@@ -1,0 +1,18 @@
+{
+  "logLevel": "debug",
+  "server": {
+    "host": "0.0.0.0",
+    "port": 4000
+  },
+  "sessionEncodingSecret": "./keys/sessionEncodingSecret.txt",
+  "jwt": {
+    "publicKey": "./certs/jwt.cert.pem",
+    "audience": "a030964658c1843f8945a8e61f7dcefa",
+    "issuer": "5b4431683ff371b4465a2a1b383e109d"
+  },
+  "privacyApi": {
+    "host": "0.0.0.0",
+    "port": 4001
+  },
+  "dbConnectionString": "postgresql://pl:pl@localhost/pl"
+}

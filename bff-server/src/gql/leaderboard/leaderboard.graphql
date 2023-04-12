@@ -1,0 +1,59 @@
+type LeaderBoardOutput {
+  rangeCount: [RangeCount]
+  minMetricVal: Float
+  maxMetricVal: Float
+  avgMetricVal: Float
+  metricDimension: String
+  totBuckets: Int
+}
+
+type RangeCount {
+  bucketNo: Int
+  bucketCount: Int
+  minRangeVal: Float
+  maxRangeVal: Float
+  avgRangeVal: Float
+}
+
+type RangeData {
+  user: User
+  metricValue: String
+}
+
+type BattleCardOutput {
+  battleCardData: [BattleCardData]
+  title: String
+  battleCardType: String
+  battleCardActions: [BattleCardActions]
+  user: User
+}
+
+type BattleCardData {
+  name: String
+  value: Int
+  valueType: String
+}
+
+type BattleCardActions {
+  actionName: String
+}
+
+extend type Query {
+  leaderBoard(
+    dashboardInput: DashboardInput
+    outComeType: String
+  ): LeaderBoardOutput
+
+  rangeData(
+    dashboardInput: DashboardInput
+    rangeNo: Int
+    outComeType: String
+  ): [RangeData]
+
+  battleCard(
+    dashboardInput: DashboardInput
+    userId: String
+    outComeType: String
+    battleCardType: String
+  ): [BattleCardOutput]
+}

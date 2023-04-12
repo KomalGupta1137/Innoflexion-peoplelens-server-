@@ -1,0 +1,53 @@
+version: "3.7"
+services:
+  postgres:
+    extends:
+      service: postgres
+      file: ../pl-data-generator/postgres.yml
+  flyway:
+    image: flyway/flyway
+    command: -connectRetries=60 migrate
+    environment:
+      - FLYWAY_USER=pl
+      - FLYWAY_PASSWORD=pl
+      - FLYWAY_URL=jdbc:postgresql://postgres:5432/pl
+    volumes:
+      - ./migrations/:/flyway/sql
+    depends_on:
+      - postgres
+  pl-data-generator:
+    extends:
+      service: pl-data-generator
+      file: ../pl-data-generator/pl-data-generator.yml
+    depends_on:
+      - postgres
+  pl-privacy-api:
+    extends:
+      service: pl-privacy-api
+      file: ../pl-privacy-mock-api-server/pl-privacy-api.yml
+    depends_on:
+      - pl-data-generator
+  pl-bff:
+    container_name: pl-bff
+    restart: always
+    build:
+      context: ./bff-server/
+      dockerfile: development.dockerfile
+    environment:
+      - NODE_ENV=test
+    ports:
+      - 4000:4000
+      - 9229:9229
+    volumes:
+      - ./bff-server/src:/opt/pl-bff/src
+      - ./bff-server/config:/opt/pl-bff/config
+      - ./bff-server/certs:/opt/pl-bff/certs
+      - ./bff-server/jest.config.json:/opt/pl-bff/jest.config.json
+      - ./bff-server/package.json:/opt/pl-bff/package.json
+      - ./bff-server/nodemon.json:/opt/pl-bff/nodemon.json
+      - ./bff-server/tsconfig.json:/opt/pl-bff/tsconfig.json
+    depends_on:
+      - postgres
+      - pl-data-generator
+      - flyway
+      - pl-privacy-api

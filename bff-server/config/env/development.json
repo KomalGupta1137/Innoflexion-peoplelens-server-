@@ -1,0 +1,34 @@
+{
+  "logLevel": "debug",
+  "server": {
+    "host": "0.0.0.0",
+    "port": 4000,
+    "healthCheckHeader": "30506cc887227b8dff3f7aacd27c77ee6a41900c552d465ad43ac5964d99b505"
+  },
+  "sessionEncodingSecret": "./keys/sessionEncodingSecret.txt",
+  "auth0": {
+    "issuer": "https://dev-peoplelens.us.auth0.com/",
+    "audience": "lBhKrNXV3la2F5yElQDDXgzfIgcORuyk"
+  },
+  "jwt": {
+    "publicKey": "./certs/jwt.cert.pem",
+    "privateKey": "./certs/jwt.key.pem",
+    "audience": "a030964658c1843f8945a8e61f7dcefa",
+    "issuer": "5b4431683ff371b4465a2a1b383e109d",
+    "expiresInSeconds": 3600
+  },
+  "redis": {
+    "host": "localhost",
+    "port": 6379,
+    "password": ""
+  },
+  "privacyApi": {
+    "host": "localhost",
+    "port": 4001
+  },
+  "dbConnectionString": "postgresql://pl:pl@localhost/pl",
+  "demoMode": {
+    "keyDriversWidget": true,
+    "peopleActivities": false
+  }
+}

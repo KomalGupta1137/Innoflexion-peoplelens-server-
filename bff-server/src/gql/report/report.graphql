@@ -1,0 +1,47 @@
+type ReportOutput {
+  salesClosed: SalesClosed
+  dealsClosed: DealsClosed
+  quotaAttainment: QuotaAttainment
+  winRate: WinRate
+  salesCylce: SalesCycle
+  dealSize: DealSize
+}
+
+type SalesClosed {
+  maxSalesClosed: Int
+  minSalesClosed: Int
+  avgSalesClosed: Int
+}
+
+type DealsClosed {
+  maxDealsClosed: Int
+  minDealsClosed: Int
+  avgDealsClosed: Int
+}
+type SalesCycle {
+  totalSalesCycle: Int
+  maxSalesCycle: Int
+  minSalesCycle: Int
+  avgSalesCycle: Int
+}
+
+type QuotaAttainment {
+  maxQuotaAttainment: Int
+  minQuotaAttainment: Int
+  avgQuotaAttainment: Int
+}
+
+type WinRate {
+  maxWinRate: Int
+  minWinRate: Int
+  avgWinRate: Int
+}
+
+type DealSize {
+  maxDealSize: Int
+  minDealSize: Int
+}
+
+extend type Query {
+  report(dashboardInput: DashboardInput, userId: String): ReportOutput
+}

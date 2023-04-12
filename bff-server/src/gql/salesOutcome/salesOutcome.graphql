@@ -1,0 +1,30 @@
+type TopProductContributor {
+  product: Product
+  totalAmount: Float
+}
+
+type ProductPenetration {
+  product: Product
+  dealCount: Int
+}
+type TotalSalesCycle {
+  product: Product
+  productCycle: Float
+}
+
+type TotalSalesClosed {
+  overallTotalSalesClosed: Float
+  existingTotalSalesClosed: Float
+}
+
+type SalesOutcome {
+  noOfDeals: Int
+  productPenetration: [ProductPenetration]
+  portfolioPresented: Float
+  quotaAttainment: Float
+  topProductContributors: [TopProductContributor]
+  totalSalesClosed: TotalSalesClosed
+  totalSalesForecast: Float
+  winRate: Float
+  totalSalesCycle: [TotalSalesCycle]
+}

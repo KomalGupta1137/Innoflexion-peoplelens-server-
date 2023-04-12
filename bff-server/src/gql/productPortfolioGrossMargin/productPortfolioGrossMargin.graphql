@@ -1,0 +1,11 @@
+type GrossMarginOutput {
+  grossMarginData: [GrossMarginData]
+}
+type GrossMarginData {
+  productName: String
+  productPercentage: Float
+}
+
+extend type Query {
+  portfolioGrossMargin(dashboardInput: DashboardInput): GrossMarginOutput
+}

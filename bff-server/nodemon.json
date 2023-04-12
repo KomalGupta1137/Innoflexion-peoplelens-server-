@@ -1,0 +1,16 @@
+{
+  "watch": [
+    "src",
+    "mock",
+    "tsconfig.json"
+  ],
+  "ext": "ts",
+  "ignore": [
+    "src/**/*.spec.ts"
+  ],
+  "exec": "npm run build:src && npm start",
+  "env": {
+    "NODE_DEBUG": 9227,
+    "NODE_ENV": "development"
+  }
+}

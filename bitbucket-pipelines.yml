@@ -1,0 +1,36 @@
+options:
+  docker: true
+
+
+definitions:
+  steps:
+    - step: &build-image
+        name: Build Docker image
+        image: google/cloud-sdk:alpine
+        script:
+          - echo $GCLOUD_API_KEYFILE | base64 -d > ./gcloud-api-key.json
+          - gcloud auth activate-service-account --key-file gcloud-api-key.json
+          - gcloud config set project $GCLOUD_PROJECT
+          - gcloud auth configure-docker
+          - export TAG=$(echo "$BITBUCKET_TAG" | sed -e "s/v//g")
+          - export SUFFIX=$([[ ! -z "$TAG" ]] && echo ":$TAG" || echo "")
+          - export IMAGE_NAME=gcr.io/${GCLOUD_PROJECT}/pl-bff${SUFFIX}
+          - docker build bff-server -f bff-server/Dockerfile -t ${IMAGE_NAME}
+          - docker push ${IMAGE_NAME}
+    - step: &build-migration-image
+        name: Build Migration Docker image
+        image: google/cloud-sdk:alpine
+        script:
+          - echo $GCLOUD_API_KEYFILE | base64 -d > ./gcloud-api-key.json
+          - gcloud auth activate-service-account --key-file gcloud-api-key.json
+          - gcloud config set project $GCLOUD_PROJECT
+          - gcloud auth configure-docker
+          - export TAG=$(echo "$BITBUCKET_TAG" | sed -e "s/v//g")
+          - export MIGRATION_IMAGE_NAME=gcr.io/${GCLOUD_PROJECT}/pl-migration${SUFFIX}
+          - docker build . -f flyway.dockerfile -t ${MIGRATION_IMAGE_NAME}
+          - docker push ${MIGRATION_IMAGE_NAME}
+pipelines:
+  custom:
+    dev:
+      - step: *build-image
+      - step: *build-migration-image

@@ -1,0 +1,34 @@
+input KeyDriversInput {
+  startDate: String
+  endDate: String
+  productId: String
+}
+
+type KeyDriversOutput {
+  graphValues: [GraphValues]
+  demoMode: DemoMode
+}
+
+type DemoMode {
+  isDemoMode: Boolean
+}
+
+type SeriesDataType {
+  y: Float
+  label: String
+  x: Float!
+}
+
+type GraphValues {
+  label: String
+  title1: String
+  title2: String
+  legend1: String
+  legend2: String
+  series1Data: [SeriesDataType]
+  series2Data: [SeriesDataType]
+}
+
+extend type Query {
+  keyDriversData(keyDriversInput: KeyDriversInput): KeyDriversOutput
+}

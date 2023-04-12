@@ -1,0 +1,69 @@
+type PeopleActivityOutput {
+  objectiveScore: ObjectiveScore
+  timeAllocationScore: TimeAllocationScore
+  pipelineDisciplineScore: PipelineDisciplineScore
+  followThrough: FollowThrough
+  accountCoverage: AccountCoverage
+  untouchedOpps: UntouchedOpps
+  repTimeAllocation: RepTimeAllocation
+  dealFunnel: DealFunnel
+  demoMode: DemoMode
+}
+
+type ObjectiveScore {
+  curQuarterVal: String
+  prevQuarterVal: String
+  benchMark: Int
+}
+
+type TimeAllocationScore {
+  curQuarterVal: String
+  prevQuarterVal: String
+  benchMark: Int
+}
+
+type PipelineDisciplineScore {
+  curQuarterVal: String
+  prevQuarterVal: String
+  benchMark: Int
+}
+
+type FollowThrough {
+  curQuarterVal: String
+  prevQuarterVal: String
+  benchMark: Int
+}
+
+type AccountCoverage {
+  curQuarterVal: String
+  prevQuarterVal: String
+  benchMark: Int
+}
+
+type UntouchedOpps {
+  curVal: String
+  prevVal: String
+  benchMark: Int
+}
+
+type RepTimeAllocation {
+  customerMeetings: Int
+  productMeetings: Int
+  internalTeamMeetings: Int
+  total: Int
+}
+
+type DealFunnel {
+  opps: Int
+  meetings: Int
+  proposals: Int
+  deals: Int
+  activeNegotiations: Int
+}
+
+extend type Query {
+  peopleActivities(
+    dashboardInput: DashboardInput
+    persona: String
+  ): PeopleActivityOutput
+}

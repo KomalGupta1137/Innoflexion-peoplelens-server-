@@ -1,0 +1,1 @@
+select * from pl."Quota" where quota_owner_id = $1

@@ -1,0 +1,20 @@
+input LearningInput {
+  startDate: String
+  endDate: String
+  productId: String
+}
+
+type LearningOutput {
+  learningParticipation: [LearningValues]
+  learnerAssessments: [LearningValues]
+  learnerSatisfaction: [LearningValues]
+}
+
+type LearningValues {
+  name: String
+  value: Int
+}
+
+extend type Query {
+  getLearningData(learningInput: LearningInput): LearningOutput
+}

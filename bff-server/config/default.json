@@ -1,0 +1,77 @@
+{
+  "logLevel": "",
+  "server": {
+    "host": "",
+    "port": -1,
+    "healthCheckHeader": ""
+  },
+  "sessionEncodingSecret": "",
+  "jwt": {
+    "publicKey": "",
+    "issuer": "",
+    "audience": ""
+  },
+  "redis": {
+    "host": "",
+    "port": 6379,
+    "password": ""
+  },
+  "privacyApi": {
+    "host": "",
+    "port": -1
+  },
+  "dbConnectionString": "",
+  "objectiveScore": {
+    "task": 0.5,
+    "email": 0.3,
+    "call": 0.5,
+    "customer_meeting": 0.9,
+    "internal_meeting": 0.5,
+    "product_meeting": 0.6,
+    "benchMark": 65
+  },
+  "timeAllocation": {
+    "customer_meeting": 0.95,
+    "internal_meeting": 0.7,
+    "product_meeting": 0.8,
+    "systems_admin": 0.1,
+    "benchMark": 65
+  },
+  "pipelineDiscipline": {
+    "benchMark": 80
+  },
+  "followThroughPriority": {
+    "meet1": 0.8,
+    "meet2": 1,
+    "meet3": 0.5,
+    "meet4": 0.25,
+    "meet5": 0.125,
+    "benchMark": 120
+  },
+  "accountCoverage": {
+    "benchMark": 65
+  },
+  "leaderBoardOutComes": {
+    "outCome1": "Quota Attainment",
+    "outCome2": "Win Rate",
+    "outCome3": "Deal Size",
+    "outCome4": "Sales Cycle"
+  },
+  "untouchedOpps": {
+    "benchMark": 2
+  },
+  "productColorMap": [
+    {
+      "productName": "prod1",
+      "color": "#0055DC"
+    },
+    {
+      "productName": "prod2",
+      "color": "#5B8FF9"
+    },
+    {
+      "productName": "prod3",
+      "color": "RGBA(0, 88, 227, 0.3)"
+    }
+  ]
+}

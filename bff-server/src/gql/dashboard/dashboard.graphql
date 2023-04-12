@@ -1,0 +1,22 @@
+input DashboardInput {
+  startDate: String
+  endDate: String
+  userId: String
+  quarter: Int,
+  week: Int
+}
+
+type DashboardOutput {
+  salesOutcome: SalesOutcome
+  peopleDrivers: PeopleDrivers
+  productColorMap: [ProductColorMap]
+}
+
+type ProductColorMap {
+  productName: String
+  color: String
+}
+
+type Query {
+  getDashboardData(dashboardInput: DashboardInput): DashboardOutput
+}

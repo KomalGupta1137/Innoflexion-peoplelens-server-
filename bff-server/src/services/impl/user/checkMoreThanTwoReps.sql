@@ -1,0 +1,1 @@
+select user_id as "userId", first_name as "firstName", last_name as "lastName" from pl."User" where parent_id = $1

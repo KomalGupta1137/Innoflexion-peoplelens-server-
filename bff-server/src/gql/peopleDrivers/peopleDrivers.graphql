@@ -1,0 +1,45 @@
+type PeopleDrivers {
+  requiredCandidates: Int
+  requisitionInfo: [RequisitionInfo]
+  competencies: [Competency]
+  attrition: Attrition
+  avgTimeToHire: Int
+  diversity: Diversity
+  spanLevel: SpanLevel
+  myTeam: MyTeam
+}
+
+type Attrition {
+  rateInCurrentQuarter: Float
+  rateInSameQuarterPreviousYear: Float
+}
+type RequisitionInfo {
+  requisitionStage: String
+  noOfCandidates: Int
+}
+type Competency {
+  ratingName: String
+  ratingValue: Float
+}
+
+type Diversity {
+  noOfMale: Int
+  noOfFemale: Int
+  total: Int
+  targetCount: Int
+  targetYear: Int
+}
+type SpanLevel {
+  span: Int
+  level: Int
+}
+
+type PersonaCount {
+  persona: String
+  count: Int
+}
+
+type MyTeam {
+  user: User
+  personaCount: [PersonaCount]
+}

@@ -1,0 +1,1 @@
+select * from pl."Opportunity" where opportunity_owner_id  = $1

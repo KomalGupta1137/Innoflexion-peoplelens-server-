@@ -1,0 +1,106 @@
+input RepDashboardInput {
+  startDate: String
+  endDate: String
+  thresholdValue: Int
+}
+
+type RepDashboardOutput {
+  pipeline: [Pipeline]
+  myLearning: [MyLearning]
+  okrName: [OKRType]
+  okrSummary: OKRSummaryOutput
+  earnings: Earnings
+  rewards: Rewards
+}
+
+type Rewards {
+  commissionStructure: [CommissionStructure]
+  commissionCases: CommissionCases
+}
+
+type CommissionCases {
+  myDeals: [Generic]
+  jointSelling: [Generic]
+}
+
+type Generic {
+  name: String
+  label: String
+}
+
+type CommissionStructure {
+  threshold: Float
+  rate: Float
+  value: Float
+}
+
+scalar Date
+
+type Earnings {
+  equity: Equity
+  annualComp: AnnualComp
+  myScenarios: MyScenarios
+  demoMode: DemoMode
+}
+
+type MyScenarios {
+  daysToClose: Int
+}
+
+type AnnualComp {
+  base: Float
+  commission: Float
+  vestedEquity: Float
+  rate: Float
+  rank: Int
+}
+
+type Equity {
+  vestedAmount: Float
+  vestedShares: Float
+  remainingAmount: Float
+  remainingShares: Float
+}
+
+type Pipeline {
+  customer: String
+  opportunity: Float
+  closedDate: Date
+  status: String
+  relationship: String
+  decisionMaker: String
+  myNextStep: String
+}
+
+type MyLearning {
+  course: String
+  assessmentScore: Float
+  courseDate: String
+  courseStatus: String
+}
+
+type OKRType {
+  title: String
+  value: [SalesOKRData]
+}
+
+type SalesOKRData {
+  title: String
+  value: String
+}
+type OKRSummaryOutput {
+  rating: Int
+  competency: [CompetencyOutput]
+}
+type CompetencyOutput {
+  name: String
+  values: [Score]
+}
+type Score {
+  title: String
+  managerScore: Float
+  selfScore: Float
+}
+extend type Query {
+  RepDashboardData(repDashboardInput: RepDashboardInput): RepDashboardOutput
+}

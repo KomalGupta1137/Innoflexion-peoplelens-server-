@@ -1,0 +1,10 @@
+type Product {
+  id: ID!
+  name: String!
+}
+
+extend type Query {
+  product(productId: ID!): Product
+  products(productIds: [ID]!): [Product]
+  allProducts: [Product]
+}

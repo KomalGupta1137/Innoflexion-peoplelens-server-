@@ -1,0 +1,14 @@
+type DeeperInsightOutput {
+  graphData: [GraphData]
+  demoMode: DemoMode
+}
+type GraphData {
+  title1: String
+  title2: String
+  series: [[Float]]
+  lineSeries: [[Float]]
+}
+
+extend type Query {
+  deeperInsight(dashboardInput: DashboardInput): DeeperInsightOutput
+}

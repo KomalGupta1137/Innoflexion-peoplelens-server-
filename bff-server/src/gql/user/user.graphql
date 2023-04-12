@@ -1,0 +1,12 @@
+type User {
+  userId: ID!
+  firstName: String!
+  lastName: String!
+  persona: String!
+  designation: String!
+}
+
+extend type Query {
+  user(userId: ID!): User
+  users(userIds: [ID]!): [User]
+}
